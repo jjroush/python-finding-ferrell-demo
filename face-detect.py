@@ -6,15 +6,18 @@ import face_recognition
 ferrellReferencePhoto = face_recognition.load_image_file("./Will-Ferrell.jpg")
 
 # This variable stores all the facial features encoded in an array which face_recognition will use to compare
-ferrellReferencePhotoEncoded = face_recognition.face_encodings(ferrellReferencePhoto)[0]
+ferrellReferencePhotoEncoded = face_recognition.face_encodings(
+    ferrellReferencePhoto)[0]
 
-numberPicker = input("Pick a number 1-4: ")
+numberPicker = input("Pick a number 1-5: ")
 
-newPhoto = face_recognition.load_image_file("./examples/ferrell-" + numberPicker + ".jpg")
+newPhoto = face_recognition.load_image_file(
+    "./examples/ferrell-" + numberPicker + ".jpg")
 
 # locations are saved as top, bottom, left, right. Get encoding of new photo
 newPhotoFaceLocations = face_recognition.face_locations(newPhoto)
-newPhotoEncoded = face_recognition.face_encodings(newPhoto, newPhotoFaceLocations)
+newPhotoEncoded = face_recognition.face_encodings(
+    newPhoto, newPhotoFaceLocations)
 
 newPhotoModified = Image.open("./examples/ferrell-" + numberPicker + ".jpg")
 
@@ -26,6 +29,7 @@ results = face_recognition.compare_faces(
     ferrellReferencePhotoEncoded, newPhotoEncoded)
 
 font = ImageFont.truetype("Roboto-Black.ttf", 38, encoding="unic")
+# enumerate gives an index value
 
 for index, faces in enumerate(newPhotoFaceLocations):
     color = "black"
@@ -33,6 +37,7 @@ for index, faces in enumerate(newPhotoFaceLocations):
         color = "red"
         canvas.text((faces[3], faces[2]), "Ferrell Located", "White", font)
 
-    canvas.rectangle(((faces[3], faces[0]), (faces[1], faces[2])), outline=color)
+    canvas.rectangle(
+        ((faces[3], faces[0]), (faces[1], faces[2])), outline=color)
 
-newPhotoModified.save("output.jpeg", "JPEG")
+newPhotoModified.save("output.jpg", "JPEG")
