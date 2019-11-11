@@ -2,7 +2,7 @@
 
 Learn just how powerful and fun it is to write in Python by using the `face_recognition` library to detect Will Ferrell in photos and modify the image using `pillow`.
 
-![face detection](https://roush-image.s3.amazonaws.com/face-detect-example.gif)
+![face detection](https://roush-image.s3.amazonaws.com/face-detect-example-sm-an.gif)
 
 ## How to Run
 
